@@ -1,0 +1,28 @@
+{
+  "name": "axios-nested-launcher",
+  "version": "0.1.0",
+  "description": "axios nested request with cancel",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jingzhiMo/axios-nested-launcher.git"
+  },
+  "keywords": [
+    "axios",
+    "cancel"
+  ],
+  "author": "jingzhiMo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jingzhiMo/axios-nested-launcher/issues"
+  },
+  "homepage": "https://github.com/jingzhiMo/axios-nested-launcher#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
