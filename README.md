@@ -47,8 +47,8 @@ const detail1Cancel = CancelToken.source()
 const detail2Cancel = CancelToken.source()
 
 const fetchList = () => axios.get('/list', { cancelToken: listCancel.token })
-const fetchDetail1 = () => axios('/detail1', { cancelToken: detail1Cancel.token })
-const fetchDetail2 = () => axios('/detail2', { cancelToken: detail2Cancel.token })
+const fetchDetail1 = () => axios.get('/detail1', { cancelToken: detail1Cancel.token })
+const fetchDetail2 = () => axios.get('/detail2', { cancelToken: detail2Cancel.token })
 const start = axiosNestedLauncher()
 
 async function fetch() {
@@ -124,3 +124,6 @@ interface Config {
   children?: Array<Config> // 当前请求方法完成后需要处理的调用方法
 }
 ```
+
+### LICENSE
+MIT
