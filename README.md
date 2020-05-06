@@ -77,3 +77,50 @@ fetch()
 ```
 
 主要处理是，把请求的嵌套关系配置成对象；调用的顺序也是只有当`request`完成之后，再执行`children`数组的函数；而`children`数组的`request`的方法接收的参数，即为上一级的`request`返回的内容；当部分请求没有完成，马上有开始下一次请求`fetch`的时候，会调用还没完成请求的`cancel`方法进行终止。后续未开始执行的方法也不会执行。若部分`request`请求出错了，后续的请求也不会执行。
+
+## API
+### 主函数 `axiosNestedLauncher`
+
+* 参数
+  * `void`
+* 返回值：启动函数`start`
+* 用法：
+
+```js
+import axiosNestedLauncher from 'axios-nested-launcher'
+
+const start = axiosNestedLauncher()
+```
+
+`axiosNestedLauncher`是一个返回启动函数`start`的函数；若有多种情况嵌套，则可以多次执行，返回多个启动函数。
+
+### 启动函数 `start`
+
+* 参数
+  * `{Object} config` 执行函数的配置
+  * `rest` 传入的剩余参数，给到配置一个请求函数的调用参数
+* 返回值：`void`
+* 用法：
+
+```js
+import axiosNestedLauncher from 'axios-nested-launcher'
+
+const config = {
+  request: date => { return date.getDay() },
+  cancel: () => {},
+  children: []
+}
+const start = axiosNestedLauncher()
+
+start(config, new Date())
+```
+
+### 启动函数配置`config`
+`config`这个是一个对象形式，有点类似链表形式，需要符合的`schema`为：
+```ts
+interface Config {
+  request: Function // 发起请求的方法
+  cancel: Function // 用于取消当前请求的方法
+  children?: Array<Config> // 当前请求方法完成后需要处理的调用方法
+}
+```
