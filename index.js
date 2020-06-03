@@ -24,7 +24,7 @@ export default function () {
     })
     const [result, error] = await wrapRequest(config.request(...arg))
 
-    // 清空当前队列所在的任务
+    // 删除当前队列所在的任务
     queue = queue.filter(({ request }) => request !== config.request)
 
     // 出错后，不往下执行
