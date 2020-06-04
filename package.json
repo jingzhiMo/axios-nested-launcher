@@ -1,6 +1,6 @@
 {
   "name": "axios-nested-launcher",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "axios nested request with cancel",
   "main": "bundle.js",
   "module": "bundle.esm.js",
